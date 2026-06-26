@@ -18,6 +18,7 @@
 
 module dma_trig_in_dmac (dma_trig_in_if vif);
   bit flow;
+  logic [1:0] rt;
   initial flow = $test$plusargs("FLOW");
 
   initial begin
@@ -29,7 +30,7 @@ module dma_trig_in_dmac (dma_trig_in_if vif);
         vif.trig_in_ack <= 1'b0; vif.trig_in_ack_type <= 2'b00; continue;
       end
       if (vif.trig_in_req && !vif.trig_in_ack) begin
-        logic [1:0] rt = vif.trig_in_req_type;
+        rt = vif.trig_in_req_type;
         repeat ($urandom_range(0,3)) @(posedge vif.clk);  // ack-wait variation
         if (!flow) begin
           // command mode: accept-to-start. OKAY, LAST_OKAY for a LAST_* request.
