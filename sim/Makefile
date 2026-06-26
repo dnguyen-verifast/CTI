@@ -93,6 +93,7 @@ compile:
 # Default test
 ifndef test
 override test = dma_trig_smoke_test
+endif
 
 # Default verbosity
 ifndef uvm_verbosity
