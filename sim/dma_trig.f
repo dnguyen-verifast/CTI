@@ -27,5 +27,5 @@
 ../vseq/dma_trig_vseq_pkg.sv
 
 // ---- testbench (behavioural DMA stub + top) ----
-../tb/dma_trig_dmac_stub.sv
+//../tb/dma_trig_dmac_stub.sv
 ../tb/dma_trig_tb_top.sv
