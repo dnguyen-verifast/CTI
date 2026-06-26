@@ -59,7 +59,7 @@ interface dma_trig_in_if (input logic clk, input logic resetn);
 
   // ack must not lead req.
   a_ack_needs_req: assert property (@(posedge clk) disable iff(!resetn)
-      trig_in_ack |-> trig_in_req)
+      $rose(trig_in_ack) |-> trig_in_req)
     else $error("[trig_in_if] ack asserted with no req");
 
   // No combinational req->ack: ack must not assert in the SAME cycle req rises.
@@ -69,7 +69,7 @@ interface dma_trig_in_if (input logic clk, input logic resetn);
 
   // acktype must never be RESERVED (2'b11) while ack is high.
   a_acktype_not_reserved: assert property (@(posedge clk) disable iff(!resetn)
-      trig_in_ack |-> (trig_in_ack_type !== 2'b11))
+      $rose(trig_in_ack) |-> (trig_in_ack_type !== 2'b11))
     else $error("[trig_in_if] ack_type == RESERVED (2'b11)");
 `endif
 

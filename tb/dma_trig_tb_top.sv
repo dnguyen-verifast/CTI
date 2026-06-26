@@ -16,7 +16,14 @@ module dma_trig_tb_top;
   import dma_trig_env_pkg::*;
   import dma_trig_vseq_pkg::*;
   `include "uvm_macros.svh"
-  `include "dma_trig_test_lib.sv"
+
+  // ---- tests (base first, then concrete tests) ----
+  `include "test/dma_trig_base_test.sv"
+  `include "test/dma_trig_smoke_test.sv"
+  `include "test/dma_trig_distribute_test.sv"
+  `include "test/dma_trig_flow_test.sv"
+  `include "test/dma_trig_stall_test.sv"
+  `include "test/dma_trig_errinj_test.sv"
 
   localparam int unsigned NUM_IN  = 2;   // NUM_TRIGGER_IN
   localparam int unsigned NUM_OUT = 2;   // NUM_TRIGGER_OUT

@@ -46,7 +46,7 @@ interface dma_trig_out_if (input logic clk, input logic resetn);
     else $error("[trig_out_if] req dropped before ack (4-phase)");
 
   a_ack_needs_req: assert property (@(posedge clk) disable iff(!resetn)
-      trig_out_ack |-> trig_out_req)
+      $rose(trig_out_ack) |-> trig_out_req)
     else $error("[trig_out_if] ack asserted with no req");
 
   a_no_comb_ack: assert property (@(posedge clk) disable iff(!resetn)
