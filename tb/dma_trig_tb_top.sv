@@ -31,7 +31,7 @@ module dma_trig_tb_top;
   generate
     for (gi = 0; gi < NUM_IN; gi++) begin : gin
       dma_trig_in_if  u_if (.clk(clk), .resetn(resetn));
-      dma_trig_in_dmac u_dmac (.vif(u_if));
+//      dma_trig_in_dmac u_dmac (.vif(u_if));
       initial uvm_config_db#(virtual dma_trig_in_if)::set(
                 null, "*", $sformatf("trig_in_vif_%0d", gi), u_if);
     end
@@ -41,7 +41,7 @@ module dma_trig_tb_top;
   generate
     for (gi = 0; gi < NUM_OUT; gi++) begin : gout
       dma_trig_out_if  u_if (.clk(clk), .resetn(resetn));
-      dma_trig_out_dmac u_dmac (.vif(u_if));
+//      dma_trig_out_dmac u_dmac (.vif(u_if));
       initial uvm_config_db#(virtual dma_trig_out_if)::set(
                 null, "*", $sformatf("trig_out_vif_%0d", gi), u_if);
     end
