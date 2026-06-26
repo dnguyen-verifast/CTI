@@ -51,7 +51,6 @@ class dma_trig_in_monitor extends uvm_monitor;
       end
       if (!vif.resetn) continue;
       it.observed_acktype = dma_trig_acktype_e'(vif.mon_cb.trig_in_ack_type);
-      it.acktype          = it.observed_acktype;
       it.t_ack            = $time;
       it.latency_cycles   = cyc;
       `uvm_info(get_type_name(), it.convert2string(), UVM_HIGH)
