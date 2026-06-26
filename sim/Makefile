@@ -18,7 +18,11 @@
 TOP            = dma_trig_tb_top
 FILELIST       = dma_trig.f
 COMPILE_LOG    = dma_trig_compile.log
-UVM_OPTS      ?=
+UVM_HOME   = /cadtools/mentor/Questa_10.6b/questasim/verilog_src/uvm-1.1c
+UVM_OPTS  = +incdir+$(UVM_HOME)/src $(UVM_HOME)/src/uvm_pkg.sv
+UVM_DPI    = /cadtools/mentor/Questa_10.6b/questasim/uvm-1.1c/linux/uvm_dpi
+
+
 
 # -------- defaults (override on the command line) --------
 ifndef test
@@ -86,7 +90,8 @@ compile:
 # ===========================================================================
 simulate:
 	mkdir -p $(test_folder)
-	vsim -c -64 \
+	vsim -vopt \
+	-sv_lib $(UVM_DPI) \
 	work.$(TOP) \
 	-voptargs=+acc \
 	-sva \
